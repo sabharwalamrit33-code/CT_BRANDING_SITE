@@ -1,230 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CT Group – Branding Requirement Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CT Group Branding</title>
   <style>
-    :root {
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --brand: #003366;
-      --brand-2: #0055aa;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --ok: #0f766e;
-      --warn: #b45309;
-      --err: #b91c1c;
-      --ring: rgba(0, 86, 179, .25);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, sans-serif;
-      background: var(--bg); color: var(--text);
-      display: grid; place-items: start center; min-height: 100dvh; padding: 32px 16px;
-    }
-    .wrap { width: 100%; max-width: 560px; }
-    .banner {
-      background: #e9f2ff; border: 1px solid #cfe3ff; color: #0b3b83;
-      padding: 10px 14px; border-radius: 12px; margin-bottom: 14px; font-size: 14px;
-      display: flex; align-items: center; gap: 10px; justify-content: space-between;
-    }
-    .banner small { color: #0b3b83; }
-    .card {
-      background: var(--card); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.06);
-      padding: 22px; border: 1px solid #eef1f6;
-    }
-    h1 { margin: 0 0 6px; color: var(--brand); font-size: 26px; }
-    p.lead { margin: 0 0 18px; color: var(--muted); }
-    label { display: block; font-weight: 600; margin: 14px 0 6px; }
-    input, select, textarea, button {
-      width: 100%; padding: 12px 12px; border-radius: 10px; border: 1px solid #d1d5db; background: #fff;
-      font-size: 15px; outline: none; transition: box-shadow .15s, border-color .15s, background .15s;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--brand-2); box-shadow: 0 0 0 4px var(--ring);
-    }
-    textarea { min-height: 110px; resize: vertical; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .actions { display: flex; gap: 10px; margin-top: 18px; }
-    .btn { cursor: pointer; background: var(--brand); color: #fff; border: none; font-weight: 600; }
-    .btn:hover { background: var(--brand-2); }
-    .btn.ghost { background: #fff; color: var(--brand); border: 1px solid #cfe3ff; }
-    .msg { margin-top: 12px; font-weight: 600; }
-    .msg.ok { color: var(--ok); }
-    .msg.warn { color: var(--warn); }
-    .msg.err { color: var(--err); }
-    .hide { display: none !important; }
-    .req { color: #ef4444; margin-left: 2px; }
-    footer { margin-top: 18px; color: var(--muted); font-size: 13px; text-align: center; }
+    body { font-family: Arial, sans-serif; background:#f4f4f4; text-align:center; padding:40px; }
+    h1 { color:#003366; }
+    form { background:#fff; padding:20px; max-width:400px; margin:auto; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+    input, select { width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:8px; }
+    button { padding:12px 20px; background:#003366; color:white; border:none; border-radius:8px; cursor:pointer; }
+    button:hover { background:#0055aa; }
+    #message { margin-top:15px; font-weight:bold; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="banner" id="modeBanner">
-      <div><strong>Mode:</strong> <span id="modeText">Local (no server)</span> — data will be saved in your browser. You can switch to Google Sheets by adding your Web App URL inside the code.</div>
-      <button class="btn ghost" id="exportBtn" title="Download all saved entries as CSV" aria-label="Export CSV">Export CSV</button>
-    </div>
+  <h1>Welcome to CT Group</h1>
+  <p>Submit your requirement below</p>
 
-    <div class="card">
-      <h1>CT Group – Branding Request</h1>
-      <p class="lead">Fill this quick form to raise branding requirements.</p>
+  <form id="reqForm">
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+    <input type="email" id="email" name="email" placeholder="Your Email" required>
+    <input type="text" id="area" name="area" placeholder="Area Name" required>
 
-      <form id="reqForm" novalidate>
-        <div class="row">
-          <div>
-            <label for="name">Your Name<span class="req">*</span></label>
-            <input id="name" name="name" type="text" placeholder="Enter your name" required />
-          </div>
-          <div>
-            <label for="email">Email<span class="req">*</span></label>
-            <input id="email" name="email" type="email" placeholder="name@example.com" required />
-          </div>
-        </div>
+    <select id="requirement" name="requirement" required>
+      <option value="">-- Select Requirement --</option>
+      <option value="Flex Board">Flex Board</option>
+      <option value="Wall Painting">Wall Painting</option>
+      <option value="Backlight Board">Backlight Board</option>
+      <option value="Other">Other</option>
+    </select>
 
-        <label for="area">Area / Location<span class="req">*</span></label>
-        <select id="area" name="area" required>
-          <option value="">— Select Area —</option>
-          <option>Main Campus</option>
-          <option>South Campus</option>
-          <option>Shahpur</option>
-          <option>Maqsudan</option>
-          <option value="Other">Other</option>
-        </select>
-        <input id="areaOther" class="hide" type="text" placeholder="Type area name" />
+    <button type="submit">Submit</button>
+  </form>
 
-        <label for="requirement">Requirement<span class="req">*</span></label>
-        <select id="requirement" name="requirement" required>
-          <option value="">— Select Requirement —</option>
-          <option>Flex Board</option>
-          <option>Wall Painting</option>
-          <option>Backlight Board</option>
-          <option value="Other">Other</option>
-        </select>
-        <input id="reqOther" class="hide" type="text" placeholder="Describe other requirement" />
-
-        <label for="details">Details</label>
-        <textarea id="details" name="details" placeholder="Extra information (sizes, quantity, deadlines, etc.)"></textarea>
-
-        <div class="actions">
-          <button type="submit" class="btn">Submit</button>
-          <button type="button" class="btn ghost" id="resetBtn">Reset</button>
-        </div>
-        <div id="message" class="msg" role="status" aria-live="polite"></div>
-      </form>
-    </div>
-
-    <footer>Tip: Host this file on GitHub Pages to share it publicly. Add a Google Sheets Web App URL to sync online.</footer>
-  </div>
+  <div id="message"></div>
 
   <script>
-    // 1) If you want to use Google Sheets, paste your Web App URL here
-    // Example: https://script.google.com/macros/s/xxxxxxxxxxxxxxxx/exec
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyD5iupNiSfG_X0RsnbkvaKh9y1aPTRgnt6jp7XtI5hHbUxi4Rc2k5z23ETjfsk1y-TDQ/exec";
+    const form = document.getElementById("reqForm");
+    const message = document.getElementById("message");
 
-    // --- Helpers
-    const el = (id) => document.getElementById(id);
-    const form = el('reqForm');
-    const msg = el('message');
-    const area = el('area');
-    const areaOther = el('areaOther');
-    const requirement = el('requirement');
-    const reqOther = el('reqOther');
-    const exportBtn = el('exportBtn');
-    const resetBtn = el('resetBtn');
-    const modeText = el('modeText');
+    // 🔗 Replace with your Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyCx6USEh99Q157KGVGa19eQ9We-q2YKkyU9bGaawVo/dev";
 
-    const STORAGE_KEY = 'ct_branding_requests';
-    const useLocal = !/^https:\/\/script\.google\.com\//.test(scriptURL);
-    modeText.textContent = useLocal ? 'Local (no server)' : 'Google Sheets (online)';
-
-    // Toggle extra inputs when "Other" is selected
-    function toggleOther(selectEl, otherInput) {
-      const isOther = selectEl.value === 'Other';
-      otherInput.classList.toggle('hide', !isOther);
-      otherInput.required = isOther;
-      if (isOther) otherInput.focus();
-    }
-    area.addEventListener('change', () => toggleOther(area, areaOther));
-    requirement.addEventListener('change', () => toggleOther(requirement, reqOther));
-
-    // Local storage helpers
-    function loadLocal(){
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
-    }
-    function saveLocal(arr){ localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
-
-    function toCSV(rows){
-      const header = ['Timestamp','Name','Email','Area','Requirement','Details'];
-      const escape = (v) => '"' + String(v ?? '').replace(/"/g,'""') + '"';
-      const lines = [header.map(escape).join(',')].concat(
-        rows.map(r => [r.timestamp, r.name, r.email, r.area, r.requirement, r.details].map(escape).join(','))
-      );
-      return lines.join('\n');
-    }
-
-    exportBtn.addEventListener('click', () => {
-      const rows = loadLocal();
-      if (!rows.length){
-        msg.textContent = 'No local entries to export.'; msg.className = 'msg warn';
-        return;
-      }
-      const blob = new Blob([toCSV(rows)], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'ct-branding-requests.csv'; a.click();
-      URL.revokeObjectURL(url);
-      msg.textContent = 'CSV downloaded.'; msg.className = 'msg ok';
-    });
-
-    resetBtn.addEventListener('click', () => { form.reset(); areaOther.classList.add('hide'); reqOther.classList.add('hide'); msg.textContent = ''; });
-
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener("submit", e => {
       e.preventDefault();
+      const formData = new FormData(form);
 
-      // Basic required validation
-      if (!form.reportValidity()) return;
-
-      // Build payload (resolve "Other" values)
-      const areaValue = area.value === 'Other' ? areaOther.value.trim() : area.value;
-      const reqValue = requirement.value === 'Other' ? reqOther.value.trim() : requirement.value;
-
-      const payload = {
-        timestamp: new Date().toISOString(),
-        name: el('name').value.trim(),
-        email: el('email').value.trim(),
-        area: areaValue,
-        requirement: reqValue,
-        details: el('details').value.trim()
-      };
-
-      try {
-        if (useLocal){
-          const rows = loadLocal(); rows.push(payload); saveLocal(rows);
-          msg.textContent = '✅ Saved locally (offline mode). Use Export CSV to download.';
-          msg.className = 'msg ok';
-          form.reset(); areaOther.classList.add('hide'); reqOther.classList.add('hide');
-          return;
-        }
-
-        // Send to Google Apps Script without triggering CORS preflight
-        const fd = new FormData();
-        for (const [k,v] of Object.entries(payload)) fd.append(k, v);
-
-        const res = await fetch(scriptURL, { method: 'POST', body: fd });
-        const text = await res.text();
-        if (!res.ok) throw new Error(text || 'Network error');
-
-        msg.textContent = text || '✅ Submitted successfully';
-        msg.className = 'msg ok';
-        form.reset(); areaOther.classList.add('hide'); reqOther.classList.add('hide');
-      } catch (err){
-        msg.textContent = '⚠️ Submit failed: ' + (err.message || err);
-        msg.className = 'msg err';
-      }
+      fetch(scriptURL, { method: "POST", body: formData })
+        .then(res => res.text())
+        .then(text => {
+          message.innerText = text;
+          message.style.color = "green";
+          form.reset();
+        })
+        .catch(err => {
+          message.innerText = "⚠️ Error submitting form!";
+          message.style.color = "red";
+        });
     });
   </script>
 </body>
 </html>
-
-
