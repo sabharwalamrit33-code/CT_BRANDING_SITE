@@ -62,7 +62,14 @@
   <input type="email" name="email" placeholder="Your Email" required />
 
   <label>Contact Number</label>
-  <input type="tel" name="contact" placeholder="Your Contact Number" required />
+  <input 
+    type="tel" 
+    name="contact" 
+    placeholder="10-digit Contact Number" 
+    pattern="[0-9]{10}" 
+    maxlength="10" 
+    required 
+  />
 
   <label>Coordinator Name</label>
   <input type="text" name="coordinator" placeholder="Coordinator Name" required />
@@ -75,8 +82,6 @@
 
   <button type="submit">Submit</button>
 </form>
-
-
 
     <!-- Thank You Message -->
     <div class="thank-you" id="thankYouMessage">
@@ -100,6 +105,7 @@
   </script>
 </body>
 </html>
+
 
 
 
