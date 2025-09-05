@@ -52,26 +52,37 @@
     <h2>Welcome to CT Group</h2>
     <p>Submit your requirement below</p>
 
-    <!-- Netlify Form -->
-    <form name="ct-branding" method="POST" data-netlify="true" onsubmit="showThankYou(event)">
-      <input type="hidden" name="form-name" value="ct-branding">
+   <form name="ct-branding" method="POST" data-netlify="true">
+  <!-- Hidden input goes here -->
+  <input type="hidden" name="form-name" value="ct-branding">
 
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <input type="text" name="area" placeholder="Area / Location" required>
-
+  <p>
+    <label>Your Name: <input type="text" name="name" required></label>
+  </p>
+  <p>
+    <label>Email: <input type="email" name="email" required></label>
+  </p>
+  <p>
+    <label>Area / Location: <input type="text" name="area" required></label>
+  </p>
+  <p>
+    <label>Requirement:
       <select name="requirement" required>
-        <option value="">-- Select Requirement --</option>
         <option value="Flex Board">Flex Board</option>
         <option value="Wall Painting">Wall Painting</option>
         <option value="Backlight Board">Backlight Board</option>
         <option value="Other">Other</option>
       </select>
+    </label>
+  </p>
+  <p>
+    <label>Details: <textarea name="details"></textarea></label>
+  </p>
+  <p>
+    <button type="submit">Submit</button>
+  </p>
+</form>
 
-      <textarea name="details" rows="4" placeholder="Enter additional details..."></textarea>
-
-      <button type="submit">Submit</button>
-    </form>
 
     <!-- Thank You Message -->
     <div class="thank-you" id="thankYouMessage">
@@ -95,4 +106,5 @@
   </script>
 </body>
 </html>
+
 
