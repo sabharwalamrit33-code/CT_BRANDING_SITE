@@ -7,106 +7,112 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f4f9;
-      text-align: center;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background: #fff;
       padding: 30px;
-    }
-    .container {
-      max-width: 500px;
-      margin: auto;
-      background: white;
-      padding: 20px;
       border-radius: 12px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      width: 100%;
     }
+
     h2 {
+      text-align: center;
+      margin-bottom: 20px;
       color: #003366;
     }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+
     input, select, textarea, button {
       width: 100%;
       padding: 10px;
-      margin: 8px 0;
+      margin-top: 6px;
       border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 8px;
+      font-size: 15px;
+      box-sizing: border-box;
     }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
     button {
       background: #003366;
       color: white;
-      font-weight: bold;
+      font-size: 16px;
+      margin-top: 20px;
       cursor: pointer;
-      border: none;
+      transition: background 0.3s ease;
     }
+
     button:hover {
       background: #0055aa;
-    }
-    .thank-you {
-      display: none;
-      color: green;
-      font-size: 18px;
-      margin-top: 15px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Welcome to CT Group</h2>
-    <p>Submit your requirement below</p>
 
-  <form name="ctgroup-form" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="ctgroup-form" />
+  <div class="form-container">
+    <h2>CT Group Requirement Form</h2>
+    <form name="ctgroup-form" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="ctgroup-form" />
 
-  <label>Your Name</label>
-  <input type="text" name="name" placeholder="Your Name" required />
+      <label>Name</label>
+      <input type="text" name="name" placeholder="Your Name" required />
 
-  <label>Your Email</label>
-  <input type="email" name="email" placeholder="Your Email" required />
+      <label>Your Email</label>
+      <input type="email" name="email" placeholder="Your Email" required />
 
-  <label>Contact Number</label>
-  <input 
-    type="tel" 
-    name="contact" 
-    placeholder="10-digit Contact Number" 
-    pattern="[0-9]{10}" 
-    maxlength="10" 
-    required 
-  />
+      <label>Contact Number</label>
+      <input 
+        type="tel" 
+        name="contact" 
+        placeholder="10-digit Contact Number" 
+        pattern="[0-9]{10}" 
+        maxlength="10" 
+        required 
+      />
 
-  <label>Coordinator Name</label>
-  <input type="text" name="coordinator" placeholder="Coordinator Name" required />
+      <label>Coordinator Name</label>
+      <input type="text" name="coordinator" placeholder="Coordinator Name" required />
 
-  <label>Size</label>
-  <input type="text" name="size" placeholder="Enter Size" required />
+      <label>Type of Requirement</label>
+      <select name="requirement_type" required>
+        <option value="">-- Select Requirement Type --</option>
+        <option value="Flex Board">Flex Board</option>
+        <option value="Wall Painting">Wall Painting</option>
+        <option value="Backlight Board">Backlight Board</option>
+        <option value="Other">Other</option>
+      </select>
 
-  <label>Content Details</label>
-  <textarea name="content_details" placeholder="Enter Content Details" required></textarea>
+      <label>Area Location</label>
+      <input type="text" name="area_location" placeholder="Enter Area Location" required />
 
-  <button type="submit">Submit</button>
-</form>
+      <label>Size of Requirement</label>
+      <input type="text" name="size_of_requirement" placeholder="Enter Size of Requirement" required />
 
-    <!-- Thank You Message -->
-    <div class="thank-you" id="thankYouMessage">
-      ✅ Thank you! Your response has been submitted successfully.
-    </div>
+      <label>Content Details</label>
+      <textarea name="content_details" placeholder="Enter Content Details" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
   </div>
 
-  <script>
-    function showThankYou(event) {
-      event.preventDefault(); // Stop default Netlify redirect
-      const form = event.target;
-
-      fetch("/", {
-        method: "POST",
-        body: new FormData(form)
-      }).then(() => {
-        form.style.display = "none"; 
-        document.getElementById("thankYouMessage").style.display = "block";
-      }).catch((error) => alert("Error: " + error));
-    }
-  </script>
 </body>
 </html>
-
-
-
-
-
