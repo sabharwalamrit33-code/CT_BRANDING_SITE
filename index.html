@@ -18,21 +18,32 @@
   <h1>Welcome to CT Group</h1>
   <p>Submit your requirement below</p>
 
-  <form id="reqForm">
-    <input type="text" id="name" name="name" placeholder="Your Name" required>
-    <input type="email" id="email" name="email" placeholder="Your Email" required>
-    <input type="text" id="area" name="area" placeholder="Area Name" required>
-
-    <select id="requirement" name="requirement" required>
-      <option value="">-- Select Requirement --</option>
-      <option value="Flex Board">Flex Board</option>
-      <option value="Wall Painting">Wall Painting</option>
-      <option value="Backlight Board">Backlight Board</option>
-      <option value="Other">Other</option>
-    </select>
-
+ <form name="ct-branding" method="POST" data-netlify="true">
+  <p>
+    <label>Your Name: <input type="text" name="name" required /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" required /></label>
+  </p>
+  <p>
+    <label>Area Name: <input type="text" name="area" required /></label>
+  </p>
+  <p>
+    <label>Requirement:
+      <select name="requirement" required>
+        <option value="">-- Select Requirement --</option>
+        <option value="Flex Board">Flex Board</option>
+        <option value="Wall Painting">Wall Painting</option>
+        <option value="Backlight Board">Backlight Board</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+  </p>
+  <p>
     <button type="submit">Submit</button>
-  </form>
+  </p>
+</form>
+
 
   <div id="message"></div>
 
@@ -62,4 +73,5 @@
   </script>
 </body>
 </html>
+
 
