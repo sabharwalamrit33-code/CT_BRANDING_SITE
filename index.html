@@ -3,33 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CT Group Branding</title>
+  <title>CT Group Requirement Form</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#f4f4f4; text-align:center; padding:40px; }
-    h1 { color:#003366; }
-    form { background:#fff; padding:20px; max-width:400px; margin:auto; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
-    input, select { width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:8px; }
-    button { padding:12px 20px; background:#003366; color:white; border:none; border-radius:8px; cursor:pointer; }
-    button:hover { background:#0055aa; }
-    #message { margin-top:15px; font-weight:bold; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      text-align: center;
+      padding: 30px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #003366;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #003366;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background: #0055aa;
+    }
+    .thank-you {
+      display: none;
+      color: green;
+      font-size: 18px;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome to CT Group</h1>
-  <p>Submit your requirement below</p>
+  <div class="container">
+    <h2>Welcome to CT Group</h2>
+    <p>Submit your requirement below</p>
 
- <form name="ct-branding" method="POST" data-netlify="true">
-  <p>
-    <label>Your Name: <input type="text" name="name" required /></label>
-  </p>
-  <p>
-    <label>Your Email: <input type="email" name="email" required /></label>
-  </p>
-  <p>
-    <label>Area Name: <input type="text" name="area" required /></label>
-  </p>
-  <p>
-    <label>Requirement:
+    <!-- Netlify Form -->
+    <form name="ct-branding" method="POST" data-netlify="true" onsubmit="showThankYou(event)">
+      <input type="hidden" name="form-name" value="ct-branding">
+
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="area" placeholder="Area / Location" required>
+
       <select name="requirement" required>
         <option value="">-- Select Requirement --</option>
         <option value="Flex Board">Flex Board</option>
@@ -37,41 +67,32 @@
         <option value="Backlight Board">Backlight Board</option>
         <option value="Other">Other</option>
       </select>
-    </label>
-  </p>
-  <p>
-    <button type="submit">Submit</button>
-  </p>
-</form>
 
+      <textarea name="details" rows="4" placeholder="Enter additional details..."></textarea>
 
-  <div id="message"></div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- Thank You Message -->
+    <div class="thank-you" id="thankYouMessage">
+      ✅ Thank you! Your response has been submitted successfully.
+    </div>
+  </div>
 
   <script>
-    const form = document.getElementById("reqForm");
-    const message = document.getElementById("message");
+    function showThankYou(event) {
+      event.preventDefault(); // Stop default Netlify redirect
+      const form = event.target;
 
-    // 🔗 Replace with your Google Apps Script Web App URL
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxWNoNPKsFGvf0KDDqr4SfM3-u-LDPILno9A_5hSlUFBVPczMAnsiPSzhIAhdO31haFBg/exec";
-
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      fetch(scriptURL, { method: "POST", body: formData })
-        .then(res => res.text())
-        .then(text => {
-          message.innerText = text;
-          message.style.color = "green";
-          form.reset();
-        })
-        .catch(err => {
-          message.innerText = "⚠️ Error submitting form!";
-          message.style.color = "red";
-        });
-    });
+      fetch("/", {
+        method: "POST",
+        body: new FormData(form)
+      }).then(() => {
+        form.style.display = "none"; 
+        document.getElementById("thankYouMessage").style.display = "block";
+      }).catch((error) => alert("Error: " + error));
+    }
   </script>
 </body>
 </html>
-
 
