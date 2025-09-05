@@ -52,36 +52,30 @@
     <h2>Welcome to CT Group</h2>
     <p>Submit your requirement below</p>
 
-   <form name="ct-branding" method="POST" data-netlify="true">
-  <!-- Hidden input goes here -->
-  <input type="hidden" name="form-name" value="ct-branding">
+  <form name="ctgroup-form" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="ctgroup-form" />
 
-  <p>
-    <label>Your Name: <input type="text" name="name" required></label>
-  </p>
-  <p>
-    <label>Email: <input type="email" name="email" required></label>
-  </p>
-  <p>
-    <label>Area / Location: <input type="text" name="area" required></label>
-  </p>
-  <p>
-    <label>Requirement:
-      <select name="requirement" required>
-        <option value="Flex Board">Flex Board</option>
-        <option value="Wall Painting">Wall Painting</option>
-        <option value="Backlight Board">Backlight Board</option>
-        <option value="Other">Other</option>
-      </select>
-    </label>
-  </p>
-  <p>
-    <label>Details: <textarea name="size and content details"></textarea></label>
-  </p>
-  <p>
-    <button type="submit">Submit</button>
-  </p>
+  <label>Your Name</label>
+  <input type="text" name="name" placeholder="Your Name" required />
+
+  <label>Your Email</label>
+  <input type="email" name="email" placeholder="Your Email" required />
+
+  <label>Contact Number</label>
+  <input type="tel" name="contact" placeholder="Your Contact Number" required />
+
+  <label>Coordinator Name</label>
+  <input type="text" name="coordinator" placeholder="Coordinator Name" required />
+
+  <label>Size</label>
+  <input type="text" name="size" placeholder="Enter Size" required />
+
+  <label>Content Details</label>
+  <textarea name="content_details" placeholder="Enter Content Details" required></textarea>
+
+  <button type="submit">Submit</button>
 </form>
+
 
 
     <!-- Thank You Message -->
@@ -106,6 +100,7 @@
   </script>
 </body>
 </html>
+
 
 
 
